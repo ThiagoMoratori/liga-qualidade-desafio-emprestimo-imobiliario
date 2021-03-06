@@ -1,6 +1,5 @@
 package br.com.zup.edu.ligaqualidade.desafioemprestimoimobiliario.modifique;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,7 +31,17 @@ public class ProposalValidator {
     public static void validate(List<Proposal> proposals) {
         filterByLoanValue(proposals);
         filterByNumberOfMonthlyInstallments(proposals);
-        System.out.println("teste");
+        filterByNumberOfProponents(proposals);
+        filterByNumberOfPrincipalProponents(proposals);
+    }
+
+    private static void filterByNumberOfPrincipalProponents(List<Proposal> proposals) {
+        proposals.removeIf(proposal -> proposal.getProponents().stream()
+                .filter(proponent -> Boolean.TRUE.equals(proponent.getMain())).count() > 1);
+    }
+
+    private static void filterByNumberOfProponents(List<Proposal> proposals) {
+        proposals.removeIf(proposal -> proposal.getProponents().size() < 2);
     }
 
     private static void filterByNumberOfMonthlyInstallments(List<Proposal> proposals) {
