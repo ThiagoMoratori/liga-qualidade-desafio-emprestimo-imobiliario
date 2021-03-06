@@ -1,8 +1,10 @@
 package br.com.zup.edu.ligaqualidade.desafioemprestimoimobiliario.modifique;
 
+import javax.sound.midi.SysexMessage;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Solucao {
 	
@@ -43,10 +45,14 @@ public class Solucao {
             }
         }
       });
+
+      System.out.println(proposals);
         // todo - rever a lógica do processamento dos eventos
        // OBS: Não deu tempo de entrar nas validações das propostas e também de separar os métodos em classes menores
 
-	  return "";
+      ProposalValidator.validate(proposals);
+
+	  return proposals.stream().map(proposal -> proposal.getId()).collect(Collectors.joining( "," ));
   }
 
     private static void createProposal(List<Proposal> proposals, String[] actualEvent) {

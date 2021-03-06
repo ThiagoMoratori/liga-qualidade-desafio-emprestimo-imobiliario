@@ -1,5 +1,6 @@
 package br.com.zup.edu.ligaqualidade.desafioemprestimoimobiliario.modifique;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Proposal {
@@ -40,6 +41,9 @@ public class Proposal {
     }
 
     public List<Warranty> getWarranties() {
+        if (warranties == null) {
+            return new ArrayList<>();
+        }
         return warranties;
     }
 
@@ -48,6 +52,9 @@ public class Proposal {
     }
 
     public List<Proponent> getProponents() {
+        if (proponents == null) {
+            return new ArrayList<>();
+        }
         return proponents;
     }
 
