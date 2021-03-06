@@ -33,6 +33,11 @@ public class ProposalValidator {
         filterByNumberOfMonthlyInstallments(proposals);
         filterByNumberOfProponents(proposals);
         filterByNumberOfPrincipalProponents(proposals);
+        filterByProponentsAge(proposals);
+    }
+
+    private static void filterByProponentsAge(List<Proposal> proposals) {
+        proposals.removeIf(proposal -> proposal.getProponents().stream().anyMatch(proponent -> proponent.getAge() < 18));
     }
 
     private static void filterByNumberOfPrincipalProponents(List<Proposal> proposals) {
